@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "./variables";
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: unset;
+    background-color: #dadada;
+}
+
+h1 {
+    font-weight: 300;
+}
+
+.button-link {
+    border: unset;
+    background-color: transparent;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,70 @@
+<div class="detail-container">
+    <div *ngIf="pokemon" class="-content d-flex flex-wrap">
+        <div class="-card">
+            <img [src]="pokemon.imageUrlHiRes" alt="">
+        </div>
+        <div class="-pokemon-data">
+            <div class="-title">
+                <div class="d-flex flex-wrap mr-auto">
+                    <h1>#{{pokemon.id}} - </h1>
+                    <h1>{{pokemon.name}}</h1>
+                </div>
+                <span>{{pokemon.types[0]}}</span>
+            </div>
+            <div class="-attributes-container d-flex flex-wrap justify-content-between">
+                <div class="-weakness d-flex flex-column align-items-center">
+                    <h3>Weakness</h3>
+                    <ng-container *ngIf="pokemon.weaknesses; else noWeakness">
+                        <div class="d-flex flex-column" *ngFor="let weakness of pokemon.weaknesses">
+                            {{weakness.type}}&nbsp;{{weakness.value}}
+                        </div>
+                    </ng-container>
+                    <ng-template #noWeakness>
+                        <span>N/A</span>
+                    </ng-template>
+                </div>
+                <div class="-resistences d-flex flex-column align-items-center">
+                    <h3>Resistences</h3>
+                    <ng-container *ngIf="pokemon.resistences; else noResistence">
+                        <div class="d-flex flex-column" *ngFor="let resistence of pokemon.resistences">
+                            {{resistence.type}}&nbsp;{{resistence.value}}
+                        </div>
+                    </ng-container>
+                    <ng-template #noResistence>
+                        <span>N/A</span>
+                    </ng-template>
+                </div>
+                <div class="-attacks d-flex flex-column align-items-center">
+                    <h3>Attacks</h3>
+                    <ng-container *ngFor="let attack of pokemon.attacks">
+                        <div class="d-flex flex-column">
+                            <button class="button-link" (click)="openModal(attack)">
+                                {{attack.name}}
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal id="{{modalId}}">
+    <div *ngIf="selectedAttack" class="modal-container">
+        <h1>Attack Details</h1>
+        <div class="d-flex">
+            <ng-container *ngIf="selectedAttack.cost">
+                <span *ngFor="let cost of selectedAttack.cost">{{cost}}&nbsp;</span>
+            </ng-container>
+            <span>{{selectedAttack.name}} | {{selectedAttack.damage}}</span>
+        </div>
+        <div>
+            <span>
+                {{selectedAttack.text}}
+            </span>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</app-modal>
