@@ -3,7 +3,7 @@
 @import "./variables";
 
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Press Start 2P", cursive;
     margin: 0;
     padding: 0;
     border: unset;
@@ -14,11 +14,32 @@ h1 {
     font-weight: 300;
 }
 
+@media screen and (max-width: $mobile-screen-width) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
+
 .button-link {
     border: unset;
     background-color: transparent;
+    padding: 0;
 
     &:hover {
         text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: $mobile-screen-width) {
+    p {
+        font-size: 14px;
+    }
+
+    .hidden-xs {
+        display: none;
     }
 }

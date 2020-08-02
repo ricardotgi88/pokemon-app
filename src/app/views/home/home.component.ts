@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit, OnDestroy {
      */
     pokemons: PokemonModel[];
     /**
+     * Indica se a pesquisa está sendo executada.
+     */
+    isSearching = false;
+    /**
      * Subject de pesquisa de itens do menu
      */
     searchSubject = new BehaviorSubject('');
@@ -48,12 +52,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     private filter(term = ''): void {
+        this.isSearching = true;
+        this.pokemons = [];
         this.pokemonResource.getPokemonCards(term).subscribe(res => {
             if (res.cards && res.cards.length > 0) {
                 this.pokemons = ArrayTools.sort(res.cards, 'name');
-            } else {
-                this.pokemons = [];
             }
+
+            this.isSearching = false;
         });
     }
 }

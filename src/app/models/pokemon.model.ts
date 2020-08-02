@@ -19,7 +19,6 @@ export class PokemonModel {
     resistances: TypeValueModel[];
     // Fraqueza(s)
     weaknesses: TypeValueModel[];
-
-    // Lista de nomes dos ataques do pokemon ao clicar exibir a modal de detalhe
+    // Lista de nomes dos ataques do pokémon ao clicar exibir a modal de detalhe
     attacks: PokemonAttackModel[];
 }

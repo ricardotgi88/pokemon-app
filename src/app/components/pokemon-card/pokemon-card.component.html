@@ -8,17 +8,17 @@
     <div class="-detaills" [class.active]="isOpenDetails">
         <div class="-item">
             <span>Pokémon</span>
-            <i>#{{pokemon.id}} - {{pokemon.name}}</i>
-        </div>
-        <div class="-close">
-            <button (click)="toggleDetail(false, $event)" class="button-link"><i class="fas fa-times"></i></button>
+            <span>#{{pokemon.id}} - {{pokemon.name}}</span>
         </div>
         <div class="-item" *ngIf="pokemon.types">
             <span>Type:</span>
             <ng-container *ngFor="let type of pokemon.types">
-                <i>{{type}}</i>&nbsp;
+                <span>{{type}}</span>&nbsp;
             </ng-container>
             <i></i>
+        </div>
+        <div class="-close">
+            <button (click)="toggleDetail(false, $event)" class="button-link"><i class="fas fa-times"></i></button>
         </div>
     </div>
 </div>

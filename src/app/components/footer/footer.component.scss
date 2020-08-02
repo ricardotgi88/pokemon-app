@@ -1,0 +1,14 @@
+@import "../../../assets/styles/variables";
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    background-color: #343a40 !important;
+    color: #fff;
+    height: $footer-height;
+    padding: 0 15px;
+
+    @media screen and (max-width: $mobile-screen-width) {
+        font-size: 11px;
+    }
+}

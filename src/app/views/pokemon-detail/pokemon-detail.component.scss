@@ -1,12 +1,19 @@
+@import "../../../assets/styles/variables";
+
 .detail-container {
-    max-width: 1200px;
+    max-width: $container-max-width;
     width: 100%;
+    background-color: #fafafa;
+    min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
     margin-left: auto;
     margin-right: auto;
 
     .-content {
         padding: 60px;
-        background-color: #fafafa;
+
+        @media screen and (max-width: $mobile-screen-width) {
+            padding: 15px;
+        }
 
         .-card {
             width: 30%;
@@ -21,7 +28,7 @@
             display: flex;
             flex-direction: column;
             width: 70%;
-            padding: 0 20px;
+            padding: 0 15px;
 
             .-title {
                 display: flex;
@@ -29,14 +36,54 @@
                 width: 100%;
                 border-bottom: 1px solid #000;
                 padding-bottom: 30px;
+
+                @media screen and (max-width: $mobile-screen-width) {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    margin-top: 10px;
+                    padding-bottom: 15px;
+                }
+            }
+
+            .-attributes-container {
+                .-weakness,
+                .-resistences,
+                .-attacks {
+                    margin-top: 48px;
+                }
+
+                @media screen and (max-width: $mobile-screen-width) {
+                    .-weakness,
+                    .-resistences,
+                    .-attacks {
+                        margin-top: 25px;
+
+                        .-description {
+                            font-size: 14px;
+                        }
+                    }
+                }
             }
         }
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $mobile-screen-width) {
             .-card,
             .-pokemon-data {
                 width: 100%;
             }
         }
+    }
+}
+
+.modal-container {
+    .-description {
+        background-color: #dadada;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    button.btn.btn-primary {
+        border-radius: 0;
     }
 }

@@ -1,4 +1,4 @@
-<div class="detail-container">
+<div class="detail-container d-flex justify-content-center align-items-center">
     <div *ngIf="pokemon" class="-content d-flex flex-wrap">
         <div class="-card">
             <img [src]="pokemon.imageUrlHiRes" alt="">
@@ -6,59 +6,64 @@
         <div class="-pokemon-data">
             <div class="-title">
                 <div class="d-flex flex-wrap mr-auto">
-                    <h1>#{{pokemon.id}} - </h1>
-                    <h1>{{pokemon.name}}</h1>
+                    <span>#{{pokemon.id}}: </span>
+                    <span>{{pokemon.name}}</span>
                 </div>
                 <span>{{pokemon.types[0]}}</span>
             </div>
-            <div class="-attributes-container d-flex flex-wrap justify-content-between">
-                <div class="-weakness d-flex flex-column align-items-center">
+            <div class="-attributes-container d-flex flex-column flex-wrap justify-content-between">
+                <div class="-weakness d-flex flex-column mt-3">
                     <h3>Weakness</h3>
                     <ng-container *ngIf="pokemon.weaknesses; else noWeakness">
-                        <div class="d-flex flex-column" *ngFor="let weakness of pokemon.weaknesses">
+                        <div class="d-flex flex-column -description" *ngFor="let weakness of pokemon.weaknesses">
                             {{weakness.type}}&nbsp;{{weakness.value}}
                         </div>
                     </ng-container>
                     <ng-template #noWeakness>
-                        <span>N/A</span>
+                        <span class="-description">N/A</span>
                     </ng-template>
                 </div>
-                <div class="-resistences d-flex flex-column align-items-center">
+                <div class="-resistences d-flex flex-column">
                     <h3>Resistences</h3>
                     <ng-container *ngIf="pokemon.resistances; else noResistence">
-                        <div class="d-flex flex-column" *ngFor="let resistence of pokemon.resistances">
+                        <div class="d-flex flex-column -description" *ngFor="let resistence of pokemon.resistances">
                             {{resistence.type}}&nbsp;{{resistence.value}}
                         </div>
                     </ng-container>
                     <ng-template #noResistence>
-                        <span>N/A</span>
+                        <span class="-description">N/A</span>
                     </ng-template>
                 </div>
-                <div class="-attacks d-flex flex-column align-items-center">
+                <div class="-attacks d-flex flex-column align-items-start">
                     <h3>Attacks</h3>
-                    <ng-container *ngFor="let attack of pokemon.attacks">
-                        <div class="d-flex flex-column">
-                            <button class="button-link" (click)="openModal(attack)">
-                                {{attack.name}}
+                    <ng-container *ngIf="pokemon.attacks && pokemon.attacks.length > 0; else noAttack">
+                        <div *ngFor="let attack of pokemon.attacks" class="d-flex flex-column mt-2 -description">
+                            <button class="button-link d-flex align-items-center" (click)="openModal(attack)">
+                                <i class="fas fa-external-link-alt mr-2"></i> {{attack.name}}
                             </button>
                         </div>
                     </ng-container>
+                    <ng-template #noAttack>
+                        <span class="-description">N/A</span>
+                    </ng-template>
                 </div>
             </div>
         </div>
     </div>
+    <ng-container *ngIf="isSearching">
+        <app-loader text="Getting card data"></app-loader>
+    </ng-container>
 </div>
 
 <app-modal id="{{modalId}}">
     <div *ngIf="selectedAttack" class="modal-container">
-        <h1>Attack Details</h1>
-        <div class="d-flex">
+        <h3>{{selectedAttack.name}} | {{selectedAttack.damage}}</h3>
+        <div class="d-flex flex-wrap mb-4">
             <ng-container *ngIf="selectedAttack.cost">
                 <span *ngFor="let cost of selectedAttack.cost">{{cost}}&nbsp;</span>
             </ng-container>
-            <span>{{selectedAttack.name}} | {{selectedAttack.damage}}</span>
         </div>
-        <div>
+        <div class="-description">
             <span>
                 {{selectedAttack.text}}
             </span>

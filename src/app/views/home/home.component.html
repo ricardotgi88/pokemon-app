@@ -1,7 +1,11 @@
 <div class="home-container">
     <div class="-finder d-flex flex-column align-items-center">
         <div class="-title">
-            <h1><i class="fas fa-feather-alt"></i> POKÉMON FINDER</h1>
+            <h1 class="d-flex align-items-baseline">
+                <!-- <i class="fas fa-feather-alt"></i> -->
+                <img src="../../../assets/images/pokemon-finder.png" class="hidden-xs" alt="">
+                POKÉMON FINDER
+            </h1>
         </div>
         <div class="-search-input">
             <input #searchInput type="text" class="form-control" placeholder="Search for a pokémon's name..." (input)="searchSubject.next($event.target.value)">
@@ -11,9 +15,22 @@
             <i>We Gotta Search 'Em all</i>
         </div>
     </div>
+
     <div class="-card-container">
-        <ng-container *ngFor="let pokemon of pokemons">
-            <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+        <ng-container *ngIf="pokemons && pokemons.length > 0">
+            <p>Click to see details</p>
+            <div class="-card-list">
+                <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-pokemon-card>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isSearching">
+            <app-loader text="Looking for pokémons"></app-loader>
+        </ng-container>
+        <ng-container *ngIf="!isSearching && pokemons.length === 0">
+            <div class="d-flex flex-column justify-content-center align-items-center -not-found">
+                <img src="../../../assets/images/sad-pikachu.jpg" alt="">
+                <span class="text-center">No pokémon was found... Try again!</span>
+            </div>
         </ng-container>
     </div>
 </div>

@@ -7,6 +7,7 @@ import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
     imports: [
@@ -18,14 +19,16 @@ import { FooterComponent } from './footer/footer.component';
         PokemonCardComponent,
         NavbarComponent,
         FooterComponent,
-        ModalComponent
+        ModalComponent,
+        LoaderComponent
     ],
     exports: [
         DefaultLayoutComponent,
         PokemonCardComponent,
         NavbarComponent,
         FooterComponent,
-        ModalComponent
+        ModalComponent,
+        LoaderComponent
     ]
 })
 export class ComponentsModule { }

@@ -17,6 +17,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     bodyText: string;
     selectedAttack: PokemonAttackModel;
     modalId = 'attack-details';
+    isSearching = false;
 
     private subscription = new Subscription();
 
@@ -27,13 +28,13 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.bodyText = 'This text can be updated in modal 1';
-
+        this.isSearching = true;
         const sub = this.activatedRoute.paramMap.subscribe(p => {
             const id = p.get('id');
 
             this.pokemonResource.getPokemonById(id).subscribe(res => {
                 this.pokemon = res.card;
+                this.isSearching = false;
             });
         });
 
