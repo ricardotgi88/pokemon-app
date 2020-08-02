@@ -4,7 +4,7 @@
             <h1><i class="fas fa-feather-alt"></i> POKÉMON FINDER</h1>
         </div>
         <div class="-search-input">
-            <input type="text" class="form-control" placeholder="Search for a pokémon's name...">
+            <input #searchInput type="text" class="form-control" placeholder="Search for a pokémon's name..." (input)="searchSubject.next($event.target.value)">
             <i class="fas fa-search input-icon"></i>
         </div>
         <div class="-sub-title">
