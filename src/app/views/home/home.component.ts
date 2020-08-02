@@ -3,8 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/co
 import { PokemonResource } from 'src/app/resources/pokemon.resource';
 import { PokemonModel } from 'src/app/models/pokemon.model';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { debounceTime, switchMap, skip, takeUntil } from 'rxjs/operators';
-import { timeStamp } from 'console';
+import { debounceTime} from 'rxjs/operators';
 import { ArrayTools } from 'src/app/core/tools/array.tools';
 
 @Component({
